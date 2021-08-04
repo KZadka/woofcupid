@@ -12,12 +12,15 @@ public class Owner {
     private String lastName;
     private String city;
     private String phoneNumber;
+    private String email;
 
-    public Owner(String firstName, String lastName, String city, String phoneNumber) {
+    public Owner(String firstName, String lastName,
+                 String city, String phoneNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
         this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
     protected Owner() {
@@ -31,6 +34,7 @@ public class Owner {
                 ", lastName='" + lastName + '\'' +
                 ", city='" + city + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 
@@ -72,5 +76,13 @@ public class Owner {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

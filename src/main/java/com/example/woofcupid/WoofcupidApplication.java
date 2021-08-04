@@ -20,31 +20,36 @@ public class WoofcupidApplication {
                     "Dexter",
                     "Morgan",
                     "Miami",
-                    "863-440-5710"
+                    "863-440-5710",
+                    "dexter.morgan@gmail.com"
             ));
             repository.save(new Owner(
                     "Debra",
                     "Morgan",
                     "Miami",
-                    "813-478-9646"
+                    "813-478-9646",
+                    "debra.morgan@gmail.com"
             ));
             repository.save(new Owner(
                     "Angel",
                     "Batista",
                     "Bartow",
-                    "954-673-6553"
+                    "954-673-6553",
+                    "angel.batista@gmail.com"
             ));
             repository.save(new Owner(
                     "James",
                     "Doakes",
                     "Daytona",
-                    "386-691-9893"
+                    "386-691-9893",
+                    "james.doakes@gmail.com"
             ));
             repository.save(new Owner(
                     "Rita",
                     "Bennett",
                     "Orlando",
-                    "407-451-1448"
+                    "407-451-1448",
+                    "rita.bennett@gmail.com"
             ));
         };
     }

@@ -1,52 +1,43 @@
 package com.example.woofcupid.owner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class OwnerController {
-    private final OwnerRepository repository;
 
-    public OwnerController(OwnerRepository repository) {
-        this.repository = repository;
+    private final OwnerService ownerService;
+
+    @Autowired
+    public OwnerController(OwnerService ownerService) {
+        this.ownerService = ownerService;
     }
 
     @GetMapping("/owners")
-    List<Owner> all() {
-        return (List<Owner>) repository.findAll();
+    public List<Owner> getOwners() {
+        return ownerService.getOwners();
     }
 
     @PostMapping("/owners")
-    Owner newOwner(@RequestBody Owner newOwner) {
-        return repository.save(newOwner);
+    public void newOwner(@RequestBody Owner newOwner) {
+        ownerService.addNewOwner(newOwner);
     }
 
     @GetMapping("/owners/{id}")
-    Owner ownerById(@PathVariable Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new OwnerNotFoundException(id));
+    public void ownerById(@PathVariable Long id) {
+        ownerService.findOwnerById(id);
     }
 
     @PutMapping("/owners/{id}")
-    Owner updateOwner(@RequestBody Owner newOwner,
+    public void updateOwner(@RequestBody Owner newOwner,
                       @PathVariable Long id) {
-        return repository.findById(id)
-                .map(owner -> {
-                    owner.setFirstName(newOwner.getFirstName());
-                    owner.setLastName(newOwner.getLastName());
-                    owner.setCity(newOwner.getCity());
-                    owner.setPhoneNumber(newOwner.getPhoneNumber());
-                    return repository.save(owner);
-                })
-                .orElseGet(() -> {
-                    newOwner.setId(id);
-                    return repository.save(newOwner);
-                });
+        ownerService.updateOwner(newOwner, id);
     }
 
     @GetMapping("/owners/{lastName}")
-    Owner ownerByLastName(@PathVariable String lastName) {
-        return repository.findByLastName(lastName);
+    public void ownerByLastName(@PathVariable("lastName")String lastName) {
+        ownerService.getOwnerByLastName(lastName);
     }
 }
