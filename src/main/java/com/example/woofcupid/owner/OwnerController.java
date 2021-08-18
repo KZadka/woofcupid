@@ -25,9 +25,9 @@ public class OwnerController {
         ownerService.addNewOwner(newOwner);
     }
 
-    @GetMapping("/owners/{id}")
-    public void ownerById(@PathVariable Long id) {
-        ownerService.findOwnerById(id);
+    @GetMapping("/owners/id/{ownerId}")
+    public Owner ownerById(@PathVariable("ownerId") Long id) {
+        return ownerService.findOwnerById(id);
     }
 
     @PutMapping("/owners/{id}")
@@ -37,7 +37,7 @@ public class OwnerController {
     }
 
     @GetMapping("/owners/{lastName}")
-    public void ownerByLastName(@PathVariable("lastName")String lastName) {
-        ownerService.getOwnerByLastName(lastName);
+    public List<Owner> ownerByLastName(@PathVariable("lastName")String lastName) {
+        return ownerService.getOwnerByLastName(lastName);
     }
 }

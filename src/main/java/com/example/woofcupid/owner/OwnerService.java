@@ -29,8 +29,8 @@ public class OwnerService {
         ownerRepository.save(owner);
     }
 
-    public void findOwnerById(Long id) {
-        ownerRepository.findById(id)
+    public Owner findOwnerById(Long id) {
+        return ownerRepository.findById(id)
                 .orElseThrow(() -> new OwnerNotFoundException(id));
     }
 
@@ -50,8 +50,7 @@ public class OwnerService {
                 });
     }
 
-    public void getOwnerByLastName(String lastName) {
-        ownerRepository.findOwnerByLastName(lastName)
-                .orElseThrow(() -> new OwnerNotFoundException(lastName));
+    public List<Owner> getOwnerByLastName(String lastName) {
+        return ownerRepository.findAllByLastName(lastName);
     }
 }
