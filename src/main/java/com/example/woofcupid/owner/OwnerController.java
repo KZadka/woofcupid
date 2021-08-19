@@ -40,4 +40,9 @@ public class OwnerController {
     public List<Owner> ownerByLastName(@PathVariable("lastName")String lastName) {
         return ownerService.getOwnerByLastName(lastName);
     }
+
+    @DeleteMapping("/owners/{ownerId}")
+    public void deleteOwner(@PathVariable("ownerId")Long id) {
+        ownerService.deleteOwnerById(id);
+    }
 }

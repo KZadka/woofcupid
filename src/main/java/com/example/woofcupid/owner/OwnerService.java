@@ -53,4 +53,8 @@ public class OwnerService {
     public List<Owner> getOwnerByLastName(String lastName) {
         return ownerRepository.findAllByLastName(lastName);
     }
+
+    public void deleteOwnerById(Long id) {
+        ownerRepository.deleteById(id);
+    }
 }
