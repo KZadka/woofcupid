@@ -1,6 +1,10 @@
 package com.example.woofcupid.owner;
 
+import com.example.woofcupid.pet.Pet;
+
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Owner {
@@ -13,6 +17,8 @@ public class Owner {
     private String city;
     private String phoneNumber;
     private String email;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private Set<Pet> pets;
 
     public Owner(String firstName, String lastName,
                  String city, String phoneNumber, String email) {
@@ -36,6 +42,14 @@ public class Owner {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    protected Set<Pet> getPets() {
+        return this.pets;
+    }
+
+    protected void setPets(Set<Pet> pets) {
+        this.pets = pets;
     }
 
     public Long getId() {
