@@ -2,8 +2,8 @@ package com.example.woofcupid.owner;
 
 import com.example.woofcupid.pet.Pet;
 
+
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,7 +29,12 @@ public class Owner {
         this.email = email;
     }
 
-    protected Owner() {
+    public Owner(Set<Pet> pets) {
+        this.pets = pets;
+    }
+
+    public Owner() {
+
     }
 
     @Override
@@ -44,12 +49,10 @@ public class Owner {
                 '}';
     }
 
-    protected Set<Pet> getPets() {
-        return this.pets;
-    }
 
-    protected void setPets(Set<Pet> pets) {
-        this.pets = pets;
+
+    public Set<Pet> getPets() {
+        return pets;
     }
 
     public Long getId() {

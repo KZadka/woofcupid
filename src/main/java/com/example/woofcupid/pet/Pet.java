@@ -11,28 +11,26 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    //private String owner;
     private String name;
-    private String type;
     private LocalDate birthDate;
-    private String sex;
+    private String gender;
     private String character;
+    private String type;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
 
-
-    public Pet(String owner, String name, String type,
-               LocalDate birthDate, String sex,
-               String character) {
-        //this.owner = owner;
+    public Pet(String name, String birthDate,
+               String gender,String type,
+               String character, Long owner) {
         this.name = name;
+        this.birthDate = LocalDate.parse(birthDate);
+        this.gender = gender;
         this.type = type;
-        this.birthDate = birthDate;
-        this.sex = sex;
         this.character = character;
+        this.owner = owner;
     }
     protected Pet() {
     }
@@ -45,10 +43,12 @@ public class Pet {
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", birthDate=" + birthDate +
-                ", sex='" + sex + '\'' +
+                ", gender='" + gender + '\'' +
                 ", character='" + character + '\'' +
                 '}';
     }
+
+
 
     public Long getId() {
         return id;
@@ -56,14 +56,6 @@ public class Pet {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
     }
 
     public String getName() {
@@ -74,14 +66,6 @@ public class Pet {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public LocalDate getBirthDate() {
         return birthDate;
     }
@@ -90,12 +74,12 @@ public class Pet {
         this.birthDate = birthDate;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getCharacter() {
@@ -104,5 +88,21 @@ public class Pet {
 
     public void setCharacter(String character) {
         this.character = character;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 }
