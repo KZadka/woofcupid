@@ -60,8 +60,7 @@ public class WoofcupidApplication {
                     "2015-08-15",
                     "Male",
                     "Dog",
-                    "Calm",
-                    1L
+                    "Calm"
             ));
         };
     }

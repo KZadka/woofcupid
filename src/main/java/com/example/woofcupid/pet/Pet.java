@@ -18,19 +18,17 @@ public class Pet {
     private String type;
 
     @ManyToOne()
-    @JoinColumn(name = "owner_id")
     private Owner owner;
 
 
     public Pet(String name, String birthDate,
                String gender,String type,
-               String character, Long owner) {
+               String character) {
         this.name = name;
         this.birthDate = LocalDate.parse(birthDate);
         this.gender = gender;
         this.type = type;
         this.character = character;
-        this.owner = owner;
     }
     protected Pet() {
     }
@@ -42,13 +40,19 @@ public class Pet {
                 ", owner='" + owner + '\'' +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", birthDate=" + birthDate +
+                ", birthDate='" + birthDate + '\'' +
                 ", gender='" + gender + '\'' +
                 ", character='" + character + '\'' +
                 '}';
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
 
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
     public Long getId() {
         return id;
@@ -98,11 +102,5 @@ public class Pet {
         this.type = type;
     }
 
-    public Owner getOwner() {
-        return owner;
-    }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
 }

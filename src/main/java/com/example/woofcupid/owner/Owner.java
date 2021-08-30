@@ -29,12 +29,7 @@ public class Owner {
         this.email = email;
     }
 
-    public Owner(Set<Pet> pets) {
-        this.pets = pets;
-    }
-
-    public Owner() {
-
+    protected Owner() {
     }
 
     @Override
@@ -53,6 +48,10 @@ public class Owner {
 
     public Set<Pet> getPets() {
         return pets;
+    }
+
+    public void setPets(Set<Pet> pets) {
+        this.pets = pets;
     }
 
     public Long getId() {
