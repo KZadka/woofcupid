@@ -1,5 +1,7 @@
 package com.example.woofcupid.owner;
 
+import com.example.woofcupid.pet.Pet;
+import com.example.woofcupid.pet.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,10 +11,12 @@ import java.util.List;
 public class OwnerController {
 
     private final OwnerService ownerService;
+    private final PetService petService;
 
     @Autowired
-    public OwnerController(OwnerService ownerService) {
+    public OwnerController(OwnerService ownerService, PetService petService) {
         this.ownerService = ownerService;
+        this.petService = petService;
     }
 
     @GetMapping("/owners")
@@ -44,5 +48,11 @@ public class OwnerController {
     @DeleteMapping("/owners/{ownerId}")
     public void deleteOwner(@PathVariable("ownerId")Long id) {
         ownerService.deleteOwnerById(id);
+    }
+
+    @PostMapping("/owners/{id}/newPet")
+    public void newPet(@RequestBody Pet newPet,
+                       @PathVariable Long id) {
+        ownerService.addNewPet(newPet, id);
     }
 }

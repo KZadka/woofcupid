@@ -18,7 +18,8 @@ public class WoofcupidApplication {
         SpringApplication.run(WoofcupidApplication.class, args);
     }
     @Bean
-    public CommandLineRunner commandLineRunner(OwnerRepository ownerRepository, PetRepository petRepository) {
+    public CommandLineRunner commandLineRunner(OwnerRepository ownerRepository,
+                                               PetRepository petRepository) {
         return (args) -> {
             ownerRepository.save(new Owner(
                     "Dexter",

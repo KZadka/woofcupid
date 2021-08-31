@@ -1,5 +1,8 @@
 package com.example.woofcupid.owner;
 
+import com.example.woofcupid.pet.Pet;
+import com.example.woofcupid.pet.PetRepository;
+import com.example.woofcupid.pet.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +13,12 @@ import java.util.Optional;
 public class OwnerService {
 
     private final OwnerRepository ownerRepository;
+    private final PetRepository petRepository;
 
     @Autowired
-    public OwnerService(OwnerRepository ownerRepository) {
+    public OwnerService(OwnerRepository ownerRepository, PetRepository petRepository) {
         this.ownerRepository = ownerRepository;
+        this.petRepository = petRepository;
     }
 
     public  List<Owner> getOwners() {
@@ -56,5 +61,10 @@ public class OwnerService {
 
     public void deleteOwnerById(Long id) {
         ownerRepository.deleteById(id);
+    }
+    //BIG loop! Fix it!
+    public void addNewPet(Pet newPet, Long ownerId) {
+        newPet.setOwner(ownerRepository.getById(ownerId));
+        petRepository.save(newPet);
     }
 }
