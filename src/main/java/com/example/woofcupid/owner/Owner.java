@@ -2,10 +2,8 @@ package com.example.woofcupid.owner;
 
 import com.example.woofcupid.pet.Pet;
 
-
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Owner {

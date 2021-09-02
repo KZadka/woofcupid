@@ -53,6 +53,18 @@ public class OwnerController {
     @PostMapping("/owners/{id}/newPet")
     public void newPet(@RequestBody Pet newPet,
                        @PathVariable Long id) {
-        ownerService.addNewPet(newPet, id);
+        petService.addNewPet(newPet, id);
+    }
+
+    @GetMapping("/owners/id/{ownerId}/pets")
+    public List<Pet> ownerAllPets(@PathVariable("ownerId")Long ownerId) {
+        return petService.getOwnerAllPets(ownerId);
+    }
+
+    @PutMapping("/owners/id/{ownerId}/pets")
+    public void updateOwnersPet(@RequestBody Pet newPet,
+                                @PathVariable Long ownerId,
+                                @RequestParam String petName) {
+        petService.updatePet(newPet, ownerId, petName);
     }
 }

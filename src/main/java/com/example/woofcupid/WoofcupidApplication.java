@@ -56,13 +56,13 @@ public class WoofcupidApplication {
                     "407-451-1448",
                     "rita.bennett@gmail.com"
             ));
-            petRepository.save(new Pet(
-                    "Wolfy",
-                    "2015-08-15",
-                    "Male",
-                    "Dog",
-                    "Calm"
-            ));
+//            petRepository.save(new Pet(
+//                    "Wolfy",
+//                    "2015-08-15",
+//                    "Male",
+//                    "Dog",
+//                    "Calm"
+//            ));
         };
     }
 }

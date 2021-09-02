@@ -1,10 +1,10 @@
 package com.example.woofcupid.pet;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class PetController {
@@ -21,4 +21,9 @@ public class PetController {
         return petService.getAllPets();
     }
 
+    @GetMapping("/pets/{ownerId}")
+    public Optional<Pet> getPetByNameAndOwnerId(@PathVariable Long ownerId,
+                                                @RequestParam String petName) {
+        return petService.getPetByNameAndOwnerId(petName, ownerId);
+    }
 }

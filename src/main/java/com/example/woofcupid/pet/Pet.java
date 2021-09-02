@@ -1,11 +1,13 @@
 package com.example.woofcupid.pet;
 
 import com.example.woofcupid.owner.Owner;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@JsonIgnoreProperties(value = {"owner"})
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +18,6 @@ public class Pet {
     private String gender;
     private String character;
     private String type;
-
     @ManyToOne()
     private Owner owner;
 
@@ -45,11 +46,9 @@ public class Pet {
                 ", character='" + character + '\'' +
                 '}';
     }
-
     public Owner getOwner() {
         return owner;
     }
-
     public void setOwner(Owner owner) {
         this.owner = owner;
     }

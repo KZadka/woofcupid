@@ -2,7 +2,6 @@ package com.example.woofcupid.owner;
 
 import com.example.woofcupid.pet.Pet;
 import com.example.woofcupid.pet.PetRepository;
-import com.example.woofcupid.pet.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,9 +61,6 @@ public class OwnerService {
     public void deleteOwnerById(Long id) {
         ownerRepository.deleteById(id);
     }
-    //BIG loop! Fix it!
-    public void addNewPet(Pet newPet, Long ownerId) {
-        newPet.setOwner(ownerRepository.getById(ownerId));
-        petRepository.save(newPet);
-    }
+
+
 }
