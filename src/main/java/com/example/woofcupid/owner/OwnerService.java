@@ -20,7 +20,7 @@ public class OwnerService {
         this.petRepository = petRepository;
     }
 
-    public  List<Owner> getOwners() {
+    public  List<Owner> getAllOwners() {
         return ownerRepository.findAll();
     }
 

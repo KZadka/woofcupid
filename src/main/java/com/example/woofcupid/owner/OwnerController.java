@@ -21,7 +21,7 @@ public class OwnerController {
 
     @GetMapping("/owners")
     public List<Owner> getOwners() {
-        return ownerService.getOwners();
+        return ownerService.getAllOwners();
     }
 
     @PostMapping("/owners")
