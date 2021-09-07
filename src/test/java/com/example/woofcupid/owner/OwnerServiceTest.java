@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Incubating;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -15,12 +14,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class OwnerServiceTest {
 
-   // @Mock
+    @Mock
     private OwnerRepository ownerRepository;
     @Mock
     private PetRepository petRepository;
@@ -76,11 +75,10 @@ class OwnerServiceTest {
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("Email taken");
     }
-    //TODO Probably need custom mocking for hall service :/
+
     @Test
     void canFindOwnerById() {
         //given
-
         Long ownerId = 1L;
         Owner owner = new Owner(
                 "Tester",
@@ -89,19 +87,35 @@ class OwnerServiceTest {
                 "000-111-2222",
                 "tester.morgan@gmail.com"
         );
-        //owner.setId(ownerId);
-        ownerRepository.save(owner);
-        serviceUnderTest.getAllOwners();
-       // System.out.println(owner);
+        owner.setId(ownerId);
+
         //when
-        Owner expected = serviceUnderTest.findOwnerById(null);
+        doReturn(Optional.of(owner)).when(ownerRepository).findById(ownerId);
+        Owner expected = serviceUnderTest.findOwnerById(ownerId);
+
         //then
         assertThat(expected).isEqualTo(owner);
 
     }
 
     @Test
-    void updateOwner() {
+    void canUpdateOwner() {
+        //given
+        OwnerService ownerService = mock(OwnerService.class);
+        Long ownerId = 1L;
+        Owner updatedOwner = new Owner(
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+        );
+
+        //when
+        ownerService.updateOwner(updatedOwner, ownerId);
+
+        //then
+        verify(ownerService, times(1)).updateOwner(updatedOwner, ownerId);
     }
 
     @Test
