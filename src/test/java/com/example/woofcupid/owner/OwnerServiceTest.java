@@ -23,6 +23,7 @@ class OwnerServiceTest {
     private OwnerRepository ownerRepository;
     @Mock
     private PetRepository petRepository;
+
     private OwnerService serviceUnderTest;
 
     @BeforeEach
@@ -120,9 +121,25 @@ class OwnerServiceTest {
 
     @Test
     void getOwnerByLastName() {
+        //given
+        String lastName = anyString();
+
+        //when
+        serviceUnderTest.getOwnerByLastName(lastName);
+
+        //then
+        verify(ownerRepository, times(1)).findAllByLastName(lastName);
     }
 
     @Test
     void deleteOwnerById() {
+        //given
+        Long id = anyLong();
+
+        //when
+        serviceUnderTest.deleteOwnerById(id);
+
+        //then
+        verify(ownerRepository, times(1)).deleteById(id);
     }
 }
