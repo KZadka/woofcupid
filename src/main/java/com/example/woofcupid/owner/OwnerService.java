@@ -21,21 +21,26 @@ public class OwnerService {
     }
 
     public  List<Owner> getAllOwners() {
-        return ownerRepository.findAll();
+        if (ownerRepository.findAll()
+                .isEmpty()) {
+            throw new IllegalStateException();
+        } else {
+            return ownerRepository.findAll();
+        }
     }
 
     public void addNewOwner(Owner owner) {
         Optional<Owner> ownerOptional = ownerRepository
                 .findByEmail(owner.getEmail());
         if (ownerOptional.isPresent()) {
-            throw new IllegalStateException("Email taken");
+            throw new IllegalStateException();
         }
         ownerRepository.save(owner);
     }
 
     public Owner findOwnerById(Long id) {
         return ownerRepository.findById(id)
-                .orElseThrow(() -> new OwnerNotFoundException(id));
+                .orElseThrow();
     }
 
     public void updateOwner(Owner newOwner, Long id) {
